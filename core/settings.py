@@ -13,7 +13,7 @@ sys.path.insert(0, APPS_DIR)
 
 SECRET_KEY = os.getenv('SECRET_KEY')
 
-DEBUG = os.getenv('DEBUG')
+DEBUG = os.getenv('DEBUG', 'False').lower() in ['true', '1']
 
 ALLOWED_HOSTS = []
 
@@ -26,17 +26,15 @@ DJANGO_APPS = [
     'django.contrib.staticfiles',
 ]
 THIRD_APPS = [
-    'corsheaders',
 ]
 PROJECT_APPS = [
-
+    'apps.base',
 ]
 INSTALLED_APPS = DJANGO_APPS + THIRD_APPS + PROJECT_APPS
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -50,7 +48,7 @@ ROOT_URLCONF = 'core.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+        'DIRS': [os.path.join(BASE_DIR, 'apps/base/templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -104,7 +102,7 @@ USE_TZ = True
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR,'core/static')
+    os.path.join(BASE_DIR,'apps/base/static')
 ]
 
 #configuração de media
@@ -150,7 +148,7 @@ CORS_ALLOWED_ORIGINS = [
     'http://127.0.0.1:8000',
 ]
 CORS_ALLOW_HEADERS = (
-    *default_headers,
+	*default_headers,
     'X-Register',
 )
 
@@ -169,6 +167,6 @@ EMAIL_HOST=os.getenv('EMAIL_HOST'),
 EMAIL_HOST_USER=os.getenv('EMAIL_HOST_USER'),
 EMAIL_HOST_PASSWORD=os.getenv('EMAIL_HOST_PASSWORD'),
 EMAIL_PORT=os.getenv('EMAIL_PORT'),
-EMAIL_USE_TLS=os.getenv('EMAIL_USE_TLS'),
+EMAIL_USE_TLS=os.getenv('EMAIL_USE_TLS', 'False').lower() in ['true', '1']
 DEFAULT_FROM_EMAIL=os.getenv('DEFAULT_FROM_EMAIL'),
 SERVER_EMAIL=os.getenv('SERVER_EMAIL'),
