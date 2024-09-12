@@ -28,7 +28,9 @@ DJANGO_APPS = [
 THIRD_APPS = [
 ]
 PROJECT_APPS = [
+    'apps.assets',
     'apps.home',
+    'apps.pages',
 ]
 INSTALLED_APPS = DJANGO_APPS + THIRD_APPS + PROJECT_APPS
 
@@ -48,8 +50,8 @@ ROOT_URLCONF = 'core.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],
-        'APP_DIRS': True,
+        'DIRS': [],
+        'APP_DIRS': True, #faz o django buscar o diretorio templates dentro de appname/templates
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
