@@ -1,6 +1,6 @@
-{% extends '../../layouts/base.html' %}
+{% extends 'layouts/base.html' %}
 
-{% block title %}Bem-vindo à Homevote!{% endblock  %}
+{% block title %}Home Page{% endblock  %}
 
 {% block style %}
 <style>
@@ -13,11 +13,13 @@
 {% endblock  %}
 
 {% block content %}
-<div class="container">
-    <h1>Home</h1>
-    <p><i class="fa-solid fa-user"></i></p>
-    <p><i class="fa-regular fa-user"></i></p>
-</div>
+    <h1>Home</h1><br><br>
+    {% if user.is_authenticated %}
+        <h4>Olá {{user.name}}!</h4>
+        <h6>Bem-vindo!</h6><br><br>
+    {% endif %}
+    <p>Página 1</p>
+    <p><i class="fa fa-user"></i></p>
 {% endblock %}
 
 {% block script %}

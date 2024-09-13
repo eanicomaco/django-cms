@@ -1,0 +1,35 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %}Login!{% endblock  %}
+
+{% block style %}
+<style></style>
+{% endblock  %}
+
+{% block content %}
+<form action="{% url "login" %}" method="post">
+    {% csrf_token %}
+    <h4>Login</h4>
+    <div class="mt-3">
+        <label for="cpf">CPF</label>
+        <input type="text" name='cpf' class='form-control' required>
+    </div>
+    <div class="mt-3">
+        <label for="password">Senha</label>
+        <input type="password" name='password' class='form-control' required>
+    </div>
+    <div class="text-end">
+        <button type="submit" class="btn btn-primary mt-3">Login</button>
+        <div class="mt-3">
+            <span>Ainda não tem conta? <a href="#" class='text-reset'>Cadastre-se</a></span><br>
+            <span>Esqueceu a senha? <a href="#" class='text-reset'>Solicitar nova senha</a></span><br>
+        </div>
+    </div>
+</form>
+{% endblock %}
+
+{% block script %}
+    <script>
+        console.log('login')
+    </script>
+{% endblock %}
